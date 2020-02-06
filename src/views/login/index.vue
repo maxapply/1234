@@ -10,7 +10,7 @@
           <el-input
             v-model="loginForm.code"
             placeholder="请输入验证码"
-            style="width:240px;margin-right:8px"        
+           style="width:240px; margin-right:8px"
           ></el-input>
           <el-button>发送验证码</el-button>
         </el-form-item>
