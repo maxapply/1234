@@ -7,6 +7,8 @@ import welcome from '@/views/welcome'
 
 import NotFund from '@/views/404'
 
+import auth from '@/utils/auth.js'
+
 Vue.use(VueRouter)
 
 const router = new VueRouter({
@@ -24,6 +26,11 @@ const router = new VueRouter({
       component: NotFund
     }]
   }]
+})
+
+router.beforeEach((to, from, next) => {
+  if (to.path !== '/login' && !auth.getUser().token) return next('/login')
+  return next()
 })
 
 export default router

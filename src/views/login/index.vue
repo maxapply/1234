@@ -26,6 +26,7 @@
 </template>
 
 <script>
+import auth from '@/utils/auth.js'
 export default {
   name: 'app-login',
   data () {
@@ -61,6 +62,7 @@ export default {
       this.$refs.loginForm.validate((valid) => {
         if (valid) {
           this.$http.post('http://ttapi.research.itcast.cn/mp/v1_0/authorizations', this.loginForm).then(res => {
+            auth.serUser(res.data.data)
             this.$router.push('/')
           }).catch(() => {
             this.$message.error('手机号或验证码错误')
