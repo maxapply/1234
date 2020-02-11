@@ -8,6 +8,9 @@ import 'element-ui/lib/theme-chalk/index.css'
 
 import axios from '@/api'
 
+import plugin from '@/plugin'
+Vue.use(plugin)
+
 Vue.prototype.$http = axios
 Vue.use(ElementUI)
 
