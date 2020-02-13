@@ -6,6 +6,7 @@ import Home from '@/views/home'
 import welcome from '@/views/welcome'
 import NotFund from '@/views/404'
 import Article from '@/views/article'
+import image from '@/views/image'
 
 import auth from '@/utils/auth.js'
 
@@ -18,17 +19,11 @@ const router = new VueRouter({
   }, {
     path: '/',
     component: Home,
-    children: [{
-      path: '/',
-      component: welcome
-    }, {
-      path: '/article',
-      component: Article
-    }, {
-      path: '*',
-      component: NotFund
-    }]
-  }]
+    children: [{ path: '/', component: welcome },
+      { path: '/article', component: Article },
+      { path: '/image', component: image }]
+  },
+  { path: '*', component: NotFund }]
 })
 
 router.beforeEach((to, from, next) => {
