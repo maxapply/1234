@@ -16,14 +16,9 @@
                 </el-radio-group>
             </el-form-item>
             <el-form-item label="频道:">
-            <el-select @change="changeChannel" v-model="filterData.channel_id" placeholder="请选择" clearable>
-                <el-option
-                v-for="item in channelOptions"
-                :key="item.id"
-                :label="item.name"
-                :value="item.id"
-                ></el-option>
-              </el-select>
+         <!-- my-channel频道组件 -->
+         <my-channel v-model="filterData.channel_id"></my-channel>
+          <!-- <my-channel :value="filterData.channer_id" @input="filterData.channer_id=$event"></my-channel> -->
             </el-form-item>
             <el-form-item label="日期:">
               <el-date-picker
@@ -111,7 +106,7 @@ export default {
     }
   },
   created () {
-    this.getChannelOptions()
+    // this.getChannelOptions()
     this.getArticle()
   },
   methods: {
@@ -122,7 +117,7 @@ export default {
         type: 'warning'
       }).then(async () => {
         try {
-          await this.$http.delte(`articles/${id}`)
+          await this.$http.delete(`articles/${id}`)
           this.$message.success('删除成功!')
           this.getArticle()
         } catch (e) {
@@ -130,6 +125,24 @@ export default {
         }
       }).catch(() => {})
     },
+    // delArticle (id) {
+    //   // 确认框
+    //   this.$confirm('亲，您是否要删除该篇文章?', '温馨提示', {
+    //     confirmButtonText: '确定',
+    //     cancelButtonText: '取消',
+    //     type: 'warning'
+    //   }).then(async () => {
+    //     // 删除请求
+    //     try {
+    //       // 13911111111 账号是测试账号，无法删除数据。
+    //       await this.$http.delete(`articles/${id}`)
+    //       this.$message.success('删除成功')
+    //       this.getArticles()
+    //     } catch (e) {
+    //       this.$message.error('删除失败')
+    //     }
+    //   }).catch(() => {})
+    // },
     toEditArticle (id) {
       this.$router.push(`/publish?id=${id}`)
     },
@@ -146,20 +159,20 @@ export default {
         this.filterData.end_pubdate = null
       }
     },
-    changeChannel () {
-      if (this.filterData.channer_id === '') {
-      // console.log(this.filterData.channer_id)
-        this.filterData.channer_id = null
-      }
-    },
+    // changeChannel () {
+    //   if (this.filterData.channer_id === '') {
+    //   // console.log(this.filterData.channer_id)
+    //     this.filterData.channer_id = null
+    //   }
+    // },
     search () {
       this.filterData.page = 1
       this.getArticle()
     },
-    async getChannelOptions () {
-      const res = await this.$http.get('channels')
-      this.channelOptions = res.data.data.channels
-    },
+    // async getChannelOptions () {
+    //   const res = await this.$http.get('channels')
+    //   this.channelOptions = res.data.data.channels
+    // },
     async getArticle () {
       const res = await this.$http.get('articles', { params: this.filterData })
       this.articles = res.data.data.results

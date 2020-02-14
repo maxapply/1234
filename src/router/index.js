@@ -7,6 +7,7 @@ import welcome from '@/views/welcome'
 import NotFund from '@/views/404'
 import Article from '@/views/article'
 import image from '@/views/image'
+import publish from '@/views/publish'
 
 import auth from '@/utils/auth.js'
 
@@ -21,7 +22,9 @@ const router = new VueRouter({
     component: Home,
     children: [{ path: '/', component: welcome },
       { path: '/article', component: Article },
-      { path: '/image', component: image }]
+      { path: '/image', component: image },
+      { path: 'publish', component: publish }
+    ]
   },
   { path: '*', component: NotFund }]
 })
