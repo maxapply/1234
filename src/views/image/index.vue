@@ -12,7 +12,7 @@
           <el-button @click="openDialog()" style="float:right" type="success" size="small">添加素材</el-button>
        </div>
        <div class="img-list">
-         <div class="img-item" v-for="item in images" :key="item">
+         <div class="img-item" v-for="item in images" :key="item.id">
            <img :src="item.url" alt="">
            <div class="option" v-if="!reqParams.colect">
              <span @click="toggleStatus(item)" class="el-icon-star-off" :class="{red: item.is_collected}"></span>
@@ -39,7 +39,7 @@
 </template>
 
 <script>
-import auth from '@/utils/auth.js'
+import auth from '@/utils/auth'
 export default {
   name: 'app-image',
   data () {
@@ -94,7 +94,9 @@ export default {
         const res = await this.$http.put(`/user/images/${item.id}`, {
           collect: !item.is_collected
         })
-        this.$message.success(res.data.data.collect ? '添加收藏成功' : '取消收藏成功')
+        this.$message.success(
+          res.data.data.collect ? '添加收藏成功' : '取消收藏成功'
+        )
         item.is_collected = res.data.data.collect
       } catch (e) {
         this.$message.error('操作失败')
