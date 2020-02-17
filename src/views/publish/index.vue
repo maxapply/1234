@@ -20,7 +20,7 @@
                   <el-radio :label="- 1">自动</el-radio>
             </el-radio-group>
             <div>
-              <my-image></my-image>
+              <my-image v-model="articleFrom.cover.images[0]"></my-image>
               <my-image></my-image>
               <my-image></my-image>
             </div>
