@@ -9,6 +9,7 @@ import Article from '@/views/article'
 import image from '@/views/image'
 import publish from '@/views/publish'
 import comment from '@/views/comment'
+import fans from '@/views/fans'
 
 import auth from '@/utils/auth.js'
 
@@ -25,7 +26,8 @@ const router = new VueRouter({
       { path: '/article', component: Article },
       { path: '/image', component: image },
       { path: '/publish', component: publish },
-      { path: '/comment', component: comment }
+      { path: '/comment', component: comment },
+      { path: '/fans', component: fans }
     ]
   },
   { path: '*', component: NotFund }]
