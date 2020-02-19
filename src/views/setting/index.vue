@@ -29,7 +29,8 @@
         <el-col :span="12">
           <el-upload
             class="avatar-uploader"
-            action="https://jsonplaceholder.typicode.com/posts/"
+            action=""
+            :http-request="uploadImage"
             :show-file-list="false">
             <img v-if="user.photo" :src="user.photo" class="avatar">
             <i v-else class="el-icon-plus avatar-uploader-icon"></i>
@@ -64,6 +65,19 @@ export default {
     this.getuserinfo()
   },
   methods: {
+    async uploadImage ({ file }) {
+      const fn = new FormData()
+      fn.append('photo', file)
+      const res = await this.$http.patch('/user/photo',fn)
+      this.user.photo = res.data.data.photo
+
+      const user = auth.getUser()
+      user.photo = res.data.data.photo
+      auth.serUser(user)
+
+      eventBus.$emit('updateUserPhoto', res.data.data.photo)
+      this.$message.success('更改头像成功')
+    },
     async saveSetting () {
       try {
         const { name, intro, email } = this.user

@@ -87,6 +87,9 @@ export default {
     eventBus.$on('updateUserName', (data) => {
       this.name = data
     })
+    eventBus.$on('updateUserPhoto', (photo) => {
+      this.photo = photo
+    })
   },
   methods: {
     toggleMenu () {
