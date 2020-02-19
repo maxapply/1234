@@ -10,6 +10,7 @@ import image from '@/views/image'
 import publish from '@/views/publish'
 import comment from '@/views/comment'
 import fans from '@/views/fans'
+import setting from '@/views/setting'
 
 import auth from '@/utils/auth.js'
 
@@ -27,7 +28,8 @@ const router = new VueRouter({
       { path: '/image', component: image },
       { path: '/publish', component: publish },
       { path: '/comment', component: comment },
-      { path: '/fans', component: fans }
+      { path: '/fans', component: fans },
+      { path: '/setting', component: setting }
     ]
   },
   { path: '*', component: NotFund }]
