@@ -1,16 +1,17 @@
 import VueRouter from 'vue-router'
 import Vue from 'vue'
 
-import Login from '@/views/login'
-import Home from '@/views/home'
-import welcome from '@/views/welcome'
-import NotFund from '@/views/404'
-import Article from '@/views/article'
-import image from '@/views/image'
-import publish from '@/views/publish'
-import comment from '@/views/comment'
-import fans from '@/views/fans'
-import setting from '@/views/setting'
+const Login = () => import  ('@/views/login')
+const Home = () => import('@/views/home')
+const welcome = () => import('@/views/welcome')
+const NotFund = () => import  ('@/views/404')
+const Article = () => import('@/views/article')
+const image = () => import  ('@/views/image')
+const publish = () => import('@/views/publish')
+
+const comment = () => import  ('@/views/comment')
+const fans = () => import  ('@/views/fans')
+const setting = () => import('@/views/setting')
 
 import auth from '@/utils/auth.js'
 
